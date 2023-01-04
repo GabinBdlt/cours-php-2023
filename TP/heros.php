@@ -117,9 +117,28 @@ if (!$conditionsPourGagnerDesPiecesDOr && !$conditionsPourPerdreDesPiecesDOr) {
 
 // 6.
 // Indiquez dans l'histoire quel jour nous sommes
+
+$histoire .= '<p>Nous sommes le ' . $joursDeLaSemaine [array_rand($joursDeLaSemaine)] . '.</p>';  
+
 // 7.
 // Si je suis en début de semaine (lundi, mardi, mercredi) je me rends à ma destination par un chemin de 740m, et je gagne 1 point de force
 // Si je suis en fin de semaine (les autres jours), je me rends à ma destination par un chemin de 1345m, et je perds 1 point d'agilité
+
+$debutSemaine = (array_rand($joursDeLaSemaine));
+
+if ($debutSemaine) {
+    $distanceParcourue += 740;
+    $force += 1;
+    $histoire .= '<p>Flash prend le chemin de 740m et gagne 1 point de force. </p>';
+}
+
+else {
+    $distanceParcourue += 1345;
+    $agilite -= 1;
+    $histoire .= '<p>Flash prend le chemin de 1345m et perd 1 point d\'agilité. </p>'; 
+}
+
+
 // 8. A l'aide d'un "if elseif elseif..." déterminer la tranche de 20, dans laquelle se trouve le nombre de pièces d'or (0-20; 21-40; 41-60; jusque 100)
 // Gérez le cas où il y aurait plus de 100 pièces également
 
