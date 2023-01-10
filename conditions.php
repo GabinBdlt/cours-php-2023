@@ -43,4 +43,3 @@ if ($monAge >= AGE_LIMITE_POUR_PASSER_LE_PERMIS) {
     // !== strictement inégal
 // Un premier bloc d'instruction, délimité par { }
 // Si nécessaire le mot clé "else"
-// Un second bloc d'instructions, délimité par { }

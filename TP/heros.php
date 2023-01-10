@@ -14,7 +14,7 @@ $histoire .= '<h4>Le héros s\'appelle' . $nomDuHeros . '<h4>';
 $force = rand(1, 10);
 $histoire .= 'Force : ' . $force;
 $agilite = rand(1, 10);
-$piecesDOr = rand(50, 100);
+$piecesDOr = rand(50, 150);
 $NbJourDeLaSemaine = rand(1, 7);
 $joursDeLaSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 //
@@ -61,7 +61,7 @@ if ($force < 6) {
 // Si j'en ai moins de 80 et + de 60, j'en dépense 15 pour m'offrir 1 point d'agilité
 // Si j'en ai moins de 60, j'en dépense 5 pour m'offrir 1 point de force
 
-$histoire .= '<p>J\'ai ' . $piecesDOr . ' pièces.</p>';
+$histoire .= '<p>Flash possède ' . $piecesDOr . ' pièces.</p>';
 
 $distanceParcourue += 150;
 
@@ -118,31 +118,82 @@ if (!$conditionsPourGagnerDesPiecesDOr && !$conditionsPourPerdreDesPiecesDOr) {
 // 6.
 // Indiquez dans l'histoire quel jour nous sommes
 
-$histoire .= '<p>Nous sommes le ' . $joursDeLaSemaine [array_rand($joursDeLaSemaine)] . '.</p>';  
+$jour = $joursDeLaSemaine[$NbJourDeLaSemaine - 1];
+$histoire .= '<p>Nous sommes un ' . $jour . '.</p>';
 
 // 7.
 // Si je suis en début de semaine (lundi, mardi, mercredi) je me rends à ma destination par un chemin de 740m, et je gagne 1 point de force
 // Si je suis en fin de semaine (les autres jours), je me rends à ma destination par un chemin de 1345m, et je perds 1 point d'agilité
 
-$debutSemaine = (array_rand($joursDeLaSemaine));
+// $debutSemaine = (array_rand($joursDeLaSemaine));
 
-if ($debutSemaine) {
-    $distanceParcourue += 740;
-    $force += 1;
-    $histoire .= '<p>Flash prend le chemin de 740m et gagne 1 point de force. </p>';
+// if ($debutSemaine) {
+//     $distanceParcourue += 740;
+//     $force += 1;
+//     $histoire .= '<p>Flash prend le chemin de 740m et gagne 1 point de force. </p>';
+// }
+
+// else {
+//     $distanceParcourue += 1345;
+//     $agilite -= 1;
+//     $histoire .= '<p>Flash prend le chemin de 1345m et perd 1 point d\'agilité. </p>'; 
+// }
+
+switch ($NbJourDeLaSemaine) {
+    case 1:
+    case 2:
+    case 3:
+        $distanceParcourue += 740;
+        $force += 1;
+        $histoire .= '<p>Flash prend le chemin de 740m et gagne 1 points de force.</p>';
+        break;
+
+// Possible de mettre (default:) à la place des cases, car ils ne restent que ces valeurs.
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        $distanceParcourue += 1345;
+        $agilite -= 1;
+        $histoire .= '<p>Flash prend le chemin de 1345m et perd 1 point d\'aglité.</p>';
+        break;
 }
 
-else {
-    $distanceParcourue += 1345;
-    $agilite -= 1;
-    $histoire .= '<p>Flash prend le chemin de 1345m et perd 1 point d\'agilité. </p>'; 
-}
+// Ou : 
+// switch ($jour) {
+//     case 'Lundi':
+//     case 'Mardi':
+//     case 'Mercredi':
+        // Bloc d'instructions
+
+        // --------------------
+//     case 'Jeudi':
+//     case 'Vendredi':
+//     case 'Samedi':
+//     case 'Dimanche': 
+        // Bloc d'instructions
+
+        // --------------------  
+// }
 
 
 // 8. A l'aide d'un "if elseif elseif..." déterminer la tranche de 20, dans laquelle se trouve le nombre de pièces d'or (0-20; 21-40; 41-60; jusque 100)
 // Gérez le cas où il y aurait plus de 100 pièces également
 
+if ($piecesDOr >= 0 && $piecesDOr <= 20) {
+    $histoire .= '<p>Flash possède peu de pièce, car il possède ' . $piecesDOr . '.</p>';
+} elseif ($piecesDOr >= 21 && $piecesDOr <= 40) {
+    $histoire .= '<p>Flash possède un nombre de pièce limité, car il possède ' . $piecesDOr . '.</p>';
+} elseif ($piecesDOr >= 41 && $piecesDOr <= 60) {
+    $histoire .= '<p>Flash possède pas mal de pièce, car il possède ' . $piecesDOr . '.</p>';
+} elseif ($piecesDOr >= 61 && $piecesDOr <= 99) {
+    $histoire .= '<p>Flash possède beaucoup de pièce, car il possède ' . $piecesDOr . '.</p>';
+} elseif ($piecesDOr >= 100) {
+    $histoire .= '<p>Flash possède énormément de pièce, car il possède ' . $piecesDOr . '.</p>';
+}
+
 
 echo $sautDeLigne;
 $histoire .= '<p>' . $distanceParcourue . ' m</p>';
 echo $histoire;
+
