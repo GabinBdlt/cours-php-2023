@@ -31,7 +31,7 @@ $carreDeTrois = pow(3, 2); // Différent de pow(2, 3)
 
 
 // Fonctions personnalisées
-function double($nombre)
+function double($nombre): int // On met int pour indiquer le typage nombre est un int et la fonction renvoie un int
 {
     $double = 2 * $nombre;
 
@@ -40,3 +40,45 @@ function double($nombre)
 
 $essai = double(4);
 echo $essai;
+
+/**
+ * La recette d'une fonction :
+ * 1. Le mot clé function
+ * 2. Son nom : camelcase, explicite 
+ * 3. Le ou les paramètres, avec leur type
+ *      int => nombre entier
+ *      float => chaine de caractères
+ *      bool => booléen
+ *      array => tableau
+ *      .... (il y en a d'autres) ....
+ * 4. Le type de retour (cf. point précédent)
+ * 5. Le return
+ * 
+ * 6. Les instructions de la fonction.
+ */
+
+ function repeteUnMot(string $mot, int $nbRepetition): string
+ {
+    $motRepetes = ' ';
+
+    // Etape 6, je code le "coeur" de ma fonction
+
+    return $motRepetes;
+ }
+
+ // NE PAS CONFONDRE :
+ // - La déclaration d'une fonction
+ // - Son utilisation
+ // On parle de différence de "scope"
+
+ function buildSentence(string $name, string $room): string
+ {
+    $sentence = '';
+    $sentence .= $name;
+    $sentence .= ' is in the ';
+    $sentence .= $room;
+
+    return $sentence;
+ }
+
+ echo '<p>' . buildSentence('Bryan', 'kitchen') . '</p>';
