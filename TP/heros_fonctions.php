@@ -13,3 +13,5 @@ function puissance(int $force, int $agilite, int $defense): int
 
     return $puissance;
 }
+
+

@@ -10,10 +10,10 @@ $magie = rand(1, 10);
 $pointDeVie = 100;
 
 $ennemis = [
-    ['nom' => 'Bouftou', 'puissance' => rand(50,95)],
-    ['nom' => 'Bouftou', 'puissance' => rand(50,95)],
-    ['nom' => 'Bouftou', 'puissance' => rand(50,95)],
-    ['nom' => 'Bouftou', 'puissance' => rand(50,95)],
+    ['nom' => 'Bouftou 1', 'puissance' => rand(50,95)],
+    ['nom' => 'Bouftou 2', 'puissance' => rand(50,95)],
+    ['nom' => 'Bouftou 3', 'puissance' => rand(50,95)],
+    ['nom' => 'Bouftou 4', 'puissance' => rand(50,95)],
 ];
 
 echo '<pre>';
@@ -34,15 +34,21 @@ echo '<p>Sadida possède : ' . puissance($force, $agilite, $defense)
 // Si je gagne, je gagne 1pt de force
 // Si je perds, je perds 1pt d'agilité et 10 points de vie
 
-for ($i=0; $i <= 3; $i++) {
-    if ($puissance >= $ennemis[$i]['puissance']) {
+foreach ($ennemis as $bouftou) {
+    $maPuissance = puissance($force, $agilite, $defense);
+    if ($maPuissance >= $bouftou['puissance']) {
         $force ++;
-        echo '<p>J\'ai gagné, ez.</p>';
+        echo '<p>J\'ai gagné contre ' . $bouftou['nom'] . ', ez.</p>';
     } else {
         $agilite --;
         $pointDeVie -= 10;
-        echo '<p>J\'ai perdu, 0 luck.</p>';
+        echo '<p>J\'ai perdu ' . $bouftou['nom'] . ', 0 luck.</p>';
     }
 }
 
 // Ecrire le déroulé des combats
+
+// 2. Créer une fonction qui génère un ennemi aléatoirement, c'est à dire qui retourne un tableau avec un nom et une puissance. Cette fonction 
+// prendra en paramètre un niveau. La puissance de l'ennemi sera alors comprise entre 10 * $niveau et 20 * $niveau.
+// Chaque ennemi s'appelera "Bouftou " suivi de 6 caractères majuscules aléatoires
+// Regarder du côté de str_shuffle et substr
