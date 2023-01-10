@@ -52,3 +52,5 @@ foreach ($ennemis as $bouftou) {
 // prendra en paramètre un niveau. La puissance de l'ennemi sera alors comprise entre 10 * $niveau et 20 * $niveau.
 // Chaque ennemi s'appelera "Bouftou " suivi de 6 caractères majuscules aléatoires
 // Regarder du côté de str_shuffle et substr
+
+echo creerUnEnnemi($nom, $puissance, $niveau);
