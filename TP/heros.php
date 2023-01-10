@@ -180,20 +180,59 @@ switch ($NbJourDeLaSemaine) {
 // 8. A l'aide d'un "if elseif elseif..." déterminer la tranche de 20, dans laquelle se trouve le nombre de pièces d'or (0-20; 21-40; 41-60; jusque 100)
 // Gérez le cas où il y aurait plus de 100 pièces également
 
-if ($piecesDOr >= 0 && $piecesDOr <= 20) {
+if ($piecesDOr <= 20) {
     $histoire .= '<p>Flash possède peu de pièce, car il possède ' . $piecesDOr . '.</p>';
-} elseif ($piecesDOr >= 21 && $piecesDOr <= 40) {
+} elseif ($piecesDOr <= 40) {
     $histoire .= '<p>Flash possède un nombre de pièce limité, car il possède ' . $piecesDOr . '.</p>';
-} elseif ($piecesDOr >= 41 && $piecesDOr <= 60) {
+} elseif ($piecesDOr <= 60) {
+    $histoire .= '<p>Flash possède quelques pièce, car il possède ' . $piecesDOr . '.</p>';
+} elseif ($piecesDOr <= 80) {
     $histoire .= '<p>Flash possède pas mal de pièce, car il possède ' . $piecesDOr . '.</p>';
-} elseif ($piecesDOr >= 61 && $piecesDOr <= 99) {
+} elseif ($piecesDOr <= 100) {
     $histoire .= '<p>Flash possède beaucoup de pièce, car il possède ' . $piecesDOr . '.</p>';
-} elseif ($piecesDOr >= 100) {
+} else {
     $histoire .= '<p>Flash possède énormément de pièce, car il possède ' . $piecesDOr . '.</p>';
 }
+
+// Variante avec un "switch true"
+
+switch (true) {
+
+    case $piecesDOr <= 20:
+        $histoire .= '<p>Flash possède peu de pièce, car il possède ' . $piecesDOr . '.</p>';   
+        break;
+
+    case $piecesDOr <= 40:
+        $histoire .= '<p>Flash possède un nombre de pièce limité, car il possède ' . $piecesDOr . '.</p>';   
+        break;
+    
+    case $piecesDOr <= 60:
+        $histoire .= '<p>Flash possède quelques pièce, car il possède ' . $piecesDOr . '.</p>';   
+        break;
+    
+    case $piecesDOr <= 80:
+        $histoire .= '<p>Flash possède pas mal de pièce, car il possède ' . $piecesDOr . '.</p>';
+        break;
+    
+    case $piecesDOr <= 100:
+        $histoire .= '<p>Flash possède beaucoup de pièce, car il possède ' . $piecesDOr . '.</p>';
+        break;
+    
+    default:
+        $histoire .= '<p>Flash possède énormément de pièce, car il possède ' . $piecesDOr . '.</p>';
+        break;
+}
+
+// Depuis PHP 8, il y a également une autre structure, nommée "match"
+
+$distanceSecondJour = match($jour) {
+    'Lundi', 'Mardi', 'Mercredi' => 740,
+    default => 1345
+};
+
+$histoire .= '<p>Le ' . $jour . ' je parcours ' . $distanceSecondJour . '.</p>';
 
 
 echo $sautDeLigne;
 $histoire .= '<p>' . $distanceParcourue . ' m</p>';
 echo $histoire;
-
