@@ -17,9 +17,9 @@ function puissance(int $force, int $agilite, int $defense): int
 function creerUnEnnemi(int $niveau): array
 {
     $puissance = rand(10*$niveau, 20*$niveau);
-    $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $alphabet = 'ADEGIMQSU';
     $alphabet= str_shuffle($alphabet);
-    $nom = substr($alphabet, 0, 6); 
+    $nom = substr($alphabet, 0, 9); 
 
     return [
         'nom' => 'Bouftou ' . $nom,
@@ -27,3 +27,5 @@ function creerUnEnnemi(int $niveau): array
     ];
 }
 
+// $ennemiDeNiveau1 = creerUnEnnemi(1);
+// $ennemiDeNiveau1 = creerUnEnnemi(2);

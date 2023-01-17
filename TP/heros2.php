@@ -53,4 +53,82 @@ foreach ($ennemis as $bouftou) {
 // Chaque ennemi s'appelera "Bouftou " suivi de 6 caractères majuscules aléatoires
 // Regarder du côté de str_shuffle et substr
 
-echo creerUnEnnemi($nom, $puissance, $niveau);
+// echo creerUnEnnemi($nom, $puissance, $niveau);
+
+
+// 3. Faire un "while" pour affronter les ennemis jusqu'à la mort !
+// Combien d'ennemi est il possibloe d'affronter ?
+// Tous les 20 ennemis, augmenter le niveau des ennemis créés (on commence à 1)
+// (Pas de nouvelle fonction à créer)
+
+// On va construire une sécurité pour pouvoir coder le while sans risque
+// Bloqueur
+$bloqueur = 0;
+
+// Je reprends la logique de mon programme
+$compteurEnnemisCombattus = 0;
+$niveauEnnemi = 1;
+
+while($pointDeVie > 0) {
+    // Je combats un nouvel ennemi
+
+    // 1. Créer un nouvel ennemi
+    $ennemi = creerUnEnnemi($niveauEnnemi);
+
+    // 2. Je recalcule ma puissance
+    $maPuissance = puissance($force, $agilite, $defense);
+
+    // 3. Je compare les puissances
+        // 3.1 Je gagne
+        if ($maPuissance >= $ennemi['puissance']) {
+            // 3.1.1 Mes caractéristiques évoluent
+            // $force ++;
+            echo '<p>J\'ai gagné contre ' . $ennemi['nom'] . ', ez.</p>';
+        }
+        // 3.2 Je perds
+            // 3.2.1 Mes caractéristiques évoluents
+            else {
+                $agilite --;
+                $pointDeVie -= 10;
+                echo '<p>J\'ai perdu ' . $ennemi['nom'] . ', 0 luck.</p>';
+        }
+    
+    // 4. J'incrémente le compteur d'ennemis combattus
+    $compteurEnnemisCombattus++;
+        // 4.1 Tous les 5 ennemis, j'augmente le niveau
+        if ($compteurEnnemisCombattus % 5 === 0) {
+            $niveauEnnemi++;
+        }
+
+    // Bloqueur
+    $bloqueur++; // A chaque itération, j'incrémente de 1
+    if ($bloqueur > 1000) {
+        break; // Au bout de 1000 itérations, par sécurité, je casse ma boucle while
+    }
+}
+
+echo '<p>J\'ai combattu ' . $compteurEnnemisCombattus . ' ennemis.</p>';
+
+
+
+// Variante pour le while
+// while(true)
+// Attention, il n'y a plus de condition d'arrêt, donc le bloqueur devietn obligatoire en phase de DEV
+
+$bloqueur = 0;
+
+while (true) {
+
+    // ...toute la logiue du while précédent...
+    
+    // Condition d'arrêt
+    if ($pointDeVie <= 0) {
+        break;
+    }
+
+    // Bloqueur par sécurité
+    $bloqueur++;
+    if ($bloqueur > 1000) {
+        break;
+    }
+}
