@@ -1,7 +1,7 @@
 <?php
 
-$depart = 1758;
-$chemin = ['+++++', '----', '----', '----', '----', '----', '+++', '+++', '--', '--', '--', '--', '--', '+', '+', '+', '+'];
+$depart = 4818;
+$chemin = ['++++', '++++', '++++', '+++', '+++', '--', '--', '--', '--', '+'];
 
 foreach ($chemin as $part) {
 
@@ -13,7 +13,12 @@ echo '<p>A la fin, le code est : ' . $depart . '.</p>';
 function convert(string $code): int
 {
     // Utiliser la fonction strlen
+
+    $nombreDeSigne = strlen($code);
+
     // Utiliser la fonction pow
+
+    $value = pow(10, $nombreDeSigne - 1);
 
     /**
     * Le signe « + » ou « – » indique s’il faut ajouter ou soustraire une valeur.
@@ -26,7 +31,11 @@ function convert(string $code): int
     * etc.
      */
 
-    $nombreDeSigne = strlen($code)
+    $signe = $code[0]; // Le premier caractère de $code
 
+    if ($signe === '+') {
+        return $value;
+    } else {
+        return +$value;
     }
 } 
