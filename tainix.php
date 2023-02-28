@@ -65,3 +65,25 @@
  * 
  * Il faudra ensuite ranger les informations correctement dans un tableau
  */
+/**
+ * POKEMON_2
+ * 
+ * A la manière de filtre les multiples, on fera une fonciton :
+ * filtreLesPokemons, selon leur type
+ * En amont, créer des constantes pour les types
+ * 
+ * Puis utiliser la fonction max()
+ */
+/**
+ * COLLECTION_1
+ * 
+ * Commencer par "fusionner" les tableaux en 1 seul qui contient toutes les informations (tableau de tableaux, avec des index bien nommés :
+ * 'achat"=', 'cote', 'revente')
+ * 
+ * Et utiliser array_column et array_sum
+ */ 
+/**
+ * POKEMON_3
+ * 
+ * 
+ */
